@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var bio = {
   "name"          : "Alex Fry",
   "role"          : "Web Developer",
@@ -82,3 +83,8 @@ var projects = [
 // $("#topContacts").append(formattedTwitter);
 // $("#topContacts").append(formattedEmail);
 // $("#topContacts").append(formattedMobile);
+=======
+/*
+This is empty on purpose! Your code to build the resume will go here.
+ */
+>>>>>>> 1a6a2696af0107d07afd3c54951f5076329cb0bd
