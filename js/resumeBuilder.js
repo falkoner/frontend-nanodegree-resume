@@ -66,14 +66,14 @@ var work = {
       "title": "Front End Developer",
       "location": "San Jose, CA",
       "dates": "2014-present",
-      "description": "n/a"
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat dolor quis dolor ullamcorper, vel mollis ipsum accumsan. Sed sit amet lorem est. Quisque sed tempus libero. Duis sollicitudin fringilla suscipit. Curabitur interdum leo lacus, in lobortis tortor aliquam eget. Quisque sit amet metus tellus. Vivamus molestie scelerisque libero. Praesent."
     },
     {
       "employer": "Berry Cafe",
       "title": "Barista",
       "location": "Seattle, WA",
       "dates": "2009-2014",
-      "description": "n/a"
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat dolor quis dolor ullamcorper, vel mollis ipsum accumsan. Sed sit amet lorem est. Quisque sed tempus libero. Duis sollicitudin fringilla suscipit. Curabitur interdum leo lacus, in lobortis tortor aliquam eget. Quisque sit amet metus tellus. Vivamus molestie scelerisque libero. Praesent."
     }
   ]
 };
@@ -115,13 +115,6 @@ var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
 
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
-$("#header").append(formattedBioPic);
-$("#header").append(formattedWelcomeMsg);
-$("#header").append(HTMLskillsStart);
-
-for (skill in bio.skills) {
-  $("#skills").append(HTMLskills.replace("%data%", bio.skills[skill]));
-}
 
 $("#topContacts").append(formattedMobile);
 $("#topContacts").append(formattedEmail);
@@ -129,10 +122,27 @@ $("#topContacts").append(formattedGithub);
 $("#topContacts").append(formattedTwitter);
 $("#topContacts").append(formattedLocation);
 
+$("#header").append(formattedBioPic);
+$("#header").append(formattedWelcomeMsg);
+
+// build Skills section
+$("#header").append(HTMLskillsStart);
+bio.skills.forEach(function (skill) {
+  $("#skills").append(HTMLskills.replace("%data%", skill));
+});
 
 // build Work Experience section
+work.jobs.forEach(function (job) {
+   $("#workExperience").append(HTMLworkStart);
 
+   var formattedEmployerWithTitle = HTMLworkEmployer.replace("%data%", job.employer) +
+      HTMLworkTitle.replace("%data%", job.title);
 
+   $(".work-entry:last").append(formattedEmployerWithTitle);
+   $(".work-entry:last").append(HTMLworkDates.replace("%data%", job.dates));
+   $(".work-entry:last").append(HTMLworkLocation.replace("%data%", job.location));
+   $(".work-entry:last").append(HTMLworkDescription.replace("%data%", job.description));
+});
 // build Projects section
 
 // build Education section
