@@ -152,4 +152,13 @@ work.jobs.forEach(function (job) {
 
 // build Footer section
 
+$("#main").append(internationalizeButton);
+function inName (fullName) {
+  name = fullName.split(" ")[0];
+  name = name[0].toUpperCase() + name.substr(1).toLowerCase();
+
+  lastname = fullName.split(" ")[1];
+  lastname = lastname.toUpperCase();
+  return name + " " + lastname;
+}
 
