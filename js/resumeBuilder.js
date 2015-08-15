@@ -97,6 +97,12 @@ var projects = [
       "images/197x148.gif"
     ]
 
+  },
+  {
+    "title": "Dice web service",
+    "dates": "2011",
+    "description": "Web service to return random result of dice through",
+    "images": []
   }
 ];
 
@@ -144,6 +150,21 @@ work.jobs.forEach(function (job) {
    $(".work-entry:last").append(HTMLworkDescription.replace("%data%", job.description));
 });
 // build Projects section
+projects.display = function() {
+  projects.forEach(function (project) {
+    $("#projects").append(HTMLprojectStart);
+
+    $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", project.title));
+    $(".project-entry:last").append(HTMLprojectDates.replace("%data%", project.dates));
+    $(".project-entry:last").append(HTMLprojectDescription.replace("%data%", project.description));
+
+    for (var i = project.images.length - 1; i >= 0; i--) {
+      $(".project-entry:last").append(HTMLprojectImage.replace("%data%", project.images[i]));
+    }
+  });
+};
+
+projects.display();
 
 // build Education section
 
