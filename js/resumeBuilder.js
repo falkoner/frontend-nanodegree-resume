@@ -169,7 +169,7 @@ projects.display();
 // build Education section
 
 // build Map section
-
+$("#mapDiv").append(googleMap);
 
 // build Footer section
 
