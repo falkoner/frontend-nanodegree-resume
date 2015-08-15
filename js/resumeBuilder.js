@@ -53,7 +53,7 @@ var education = {
     {
       "title": "HTML and CSS for all",
       "school": "EdX",
-      "data": 2014,
+      "dates": 2014,
       "url": "http://www.edx.org"
     }
   ]
@@ -168,10 +168,45 @@ projects.display();
 
 // build Education section
 
+education.display = function () {
+  education.schools.forEach(function(school){
+    $("#education").append(HTMLschoolStart);
+
+    var formattedSchoolName = HTMLschoolName.replace("%data%", school.name);
+    var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
+    $(".education-entry:last").append(formattedSchoolName + formattedSchoolDegree);
+    $(".education-entry:last").append(HTMLschoolDates.replace("%data%", school.dates));
+    $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", school.location));
+    school.majors.forEach(function(major){
+      $(".education-entry:last").append(HTMLschoolMajor.replace("%data%", major));
+    });
+  });
+
+  if (education.onlineCourses.length > 0) {
+    $("#education").append(HTMLonlineClasses);
+  }
+  education.onlineCourses.forEach(function(course){
+    $("#education").append(HTMLschoolStart);
+
+    var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", course.title);
+    var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", course.school);
+    $(".education-entry:last").append(formattedOnlineTitle + formattedOnlineSchool);
+    $(".education-entry:last").append(HTMLonlineDates.replace("%data%",course.dates));
+    $(".education-entry:last").append(HTMLonlineURL.replace("%data%",course.url));
+  });
+};
+
+education.display();
+
 // build Map section
 $("#mapDiv").append(googleMap);
 
 // build Footer section
+$("#footerContacts").append(formattedMobile);
+$("#footerContacts").append(formattedEmail);
+$("#footerContacts").append(formattedGithub);
+$("#footerContacts").append(formattedTwitter);
+$("#footerContacts").append(formattedLocation);
 
 $("#main").append(internationalizeButton);
 function inName (fullName) {
