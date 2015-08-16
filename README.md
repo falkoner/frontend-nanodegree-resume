@@ -1,3 +1,5 @@
+__About:__ alternative version for the Project 2. Uses external data file for resume. Requires server deployment to work. Something like ___python -m SimpleHTTPServer___ should work just fine.
+
 ## How do I complete this project?
 
 1. Go to the [Javascript Basics course](https://www.udacity.com/course/ud804) and select "View Course Materials."
