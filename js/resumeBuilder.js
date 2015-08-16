@@ -112,7 +112,7 @@ education.display = function () {
     });
   });
 
-  if (education.onlineCourses.length > 0) {
+  if (education.onlineCourses.length) {
     $('#education').append(HTMLonlineClasses);
   }
   education.onlineCourses.forEach(function(course){
@@ -188,6 +188,7 @@ var projects = {
     }
   ]
 };
+
 projects.display = function() {
   projects.projects.forEach(function (project) {
     $('#projects').append(HTMLprojectStart);
