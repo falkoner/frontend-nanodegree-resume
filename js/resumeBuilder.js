@@ -186,7 +186,7 @@ var projects = {
       'description': 'Web service to return random result of dice through',
       'images': []
     }
-  ],
+  ]
 };
 projects.display = function() {
   projects.projects.forEach(function (project) {
