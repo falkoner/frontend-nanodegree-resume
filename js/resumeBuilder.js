@@ -20,6 +20,45 @@ var bio = {
   "bioPic": "images/fry.jpg"
 };
 
+bio.display = function () {
+  var formattedName = HTMLheaderName.replace("%data%", bio.name);
+  var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+
+  var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+  var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+  var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+  var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+  var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+
+  var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+  var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
+
+  $("#header").prepend(formattedRole);
+  $("#header").prepend(formattedName);
+
+  $("#topContacts").append(formattedMobile);
+  $("#topContacts").append(formattedEmail);
+  $("#topContacts").append(formattedGithub);
+  $("#topContacts").append(formattedTwitter);
+  $("#topContacts").append(formattedLocation);
+
+  $("#header").append(formattedBioPic);
+  $("#header").append(formattedWelcomeMsg);
+
+  // build Skills section
+  $("#header").append(HTMLskillsStart);
+  bio.skills.forEach(function (skill) {
+    $("#skills").append(HTMLskills.replace("%data%", skill));
+  });
+
+  // build Footer section
+  $("#footerContacts").append(formattedMobile);
+  $("#footerContacts").append(formattedEmail);
+  $("#footerContacts").append(formattedGithub);
+  $("#footerContacts").append(formattedTwitter);
+  $("#footerContacts").append(formattedLocation);
+};
+
 var education = {
   "schools": [
     {
@@ -59,115 +98,6 @@ var education = {
   ]
 };
 
-var work = {
-  "jobs": [
-    {
-      "employer": "Sam's Long Hands Inc.",
-      "title": "Front End Developer",
-      "location": "San Jose, CA",
-      "dates": "2014-present",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat dolor quis dolor ullamcorper, vel mollis ipsum accumsan. Sed sit amet lorem est. Quisque sed tempus libero. Duis sollicitudin fringilla suscipit. Curabitur interdum leo lacus, in lobortis tortor aliquam eget. Quisque sit amet metus tellus. Vivamus molestie scelerisque libero. Praesent."
-    },
-    {
-      "employer": "Berry Cafe",
-      "title": "Barista",
-      "location": "Seattle, WA",
-      "dates": "2009-2014",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat dolor quis dolor ullamcorper, vel mollis ipsum accumsan. Sed sit amet lorem est. Quisque sed tempus libero. Duis sollicitudin fringilla suscipit. Curabitur interdum leo lacus, in lobortis tortor aliquam eget. Quisque sit amet metus tellus. Vivamus molestie scelerisque libero. Praesent."
-    }
-  ]
-};
-
-var projects = [
-  {
-    "title": "Lorem Impsum",
-    "dates": "2014",
-    "description": "An interective web book with infinite text placeholder compiled of random public text selections",
-    "images": [
-      "images/197x148.gif",
-      "images/197x148.gif"
-    ]
-  },
-  {
-    "title": "Food Portfolio",
-    "dates": "2012-present",
-    "description": "Specialized portfolio site for cooks to showcase their masterpieces",
-    "images": [
-      "images/197x148.gif",
-      "images/197x148.gif"
-    ]
-
-  },
-  {
-    "title": "Dice web service",
-    "dates": "2011",
-    "description": "Web service to return random result of dice through",
-    "images": []
-  }
-];
-
-// build Header section
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-
-var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-
-var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
-
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-
-$("#topContacts").append(formattedMobile);
-$("#topContacts").append(formattedEmail);
-$("#topContacts").append(formattedGithub);
-$("#topContacts").append(formattedTwitter);
-$("#topContacts").append(formattedLocation);
-
-$("#header").append(formattedBioPic);
-$("#header").append(formattedWelcomeMsg);
-
-// build Skills section
-$("#header").append(HTMLskillsStart);
-bio.skills.forEach(function (skill) {
-  $("#skills").append(HTMLskills.replace("%data%", skill));
-});
-
-// build Work Experience section
-work.jobs.forEach(function (job) {
-   $("#workExperience").append(HTMLworkStart);
-
-   var formattedEmployerWithTitle = HTMLworkEmployer.replace("%data%", job.employer) +
-      HTMLworkTitle.replace("%data%", job.title);
-
-   $(".work-entry:last").append(formattedEmployerWithTitle);
-   $(".work-entry:last").append(HTMLworkDates.replace("%data%", job.dates));
-   $(".work-entry:last").append(HTMLworkLocation.replace("%data%", job.location));
-   $(".work-entry:last").append(HTMLworkDescription.replace("%data%", job.description));
-});
-// build Projects section
-projects.display = function() {
-  projects.forEach(function (project) {
-    $("#projects").append(HTMLprojectStart);
-
-    $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", project.title));
-    $(".project-entry:last").append(HTMLprojectDates.replace("%data%", project.dates));
-    $(".project-entry:last").append(HTMLprojectDescription.replace("%data%", project.description));
-
-    for (var i = project.images.length - 1; i >= 0; i--) {
-      $(".project-entry:last").append(HTMLprojectImage.replace("%data%", project.images[i]));
-    }
-  });
-};
-
-projects.display();
-
-// build Education section
-
 education.display = function () {
   education.schools.forEach(function(school){
     $("#education").append(HTMLschoolStart);
@@ -196,17 +126,96 @@ education.display = function () {
   });
 };
 
+var work = {
+  "jobs": [
+    {
+      "employer": "Sam's Long Hands Inc.",
+      "title": "Front End Developer",
+      "location": "San Jose, CA",
+      "dates": "2014-present",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat dolor quis dolor ullamcorper, vel mollis ipsum accumsan. Sed sit amet lorem est. Quisque sed tempus libero. Duis sollicitudin fringilla suscipit. Curabitur interdum leo lacus, in lobortis tortor aliquam eget. Quisque sit amet metus tellus. Vivamus molestie scelerisque libero. Praesent."
+    },
+    {
+      "employer": "Berry Cafe",
+      "title": "Barista",
+      "location": "Seattle, WA",
+      "dates": "2009-2014",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat dolor quis dolor ullamcorper, vel mollis ipsum accumsan. Sed sit amet lorem est. Quisque sed tempus libero. Duis sollicitudin fringilla suscipit. Curabitur interdum leo lacus, in lobortis tortor aliquam eget. Quisque sit amet metus tellus. Vivamus molestie scelerisque libero. Praesent."
+    }
+  ]
+};
+
+work.display = function () {
+  work.jobs.forEach(function (job) {
+     $("#workExperience").append(HTMLworkStart);
+
+     var formattedEmployerWithTitle = HTMLworkEmployer.replace("%data%", job.employer) +
+        HTMLworkTitle.replace("%data%", job.title);
+
+     $(".work-entry:last").append(formattedEmployerWithTitle);
+     $(".work-entry:last").append(HTMLworkDates.replace("%data%", job.dates));
+     $(".work-entry:last").append(HTMLworkLocation.replace("%data%", job.location));
+     $(".work-entry:last").append(HTMLworkDescription.replace("%data%", job.description));
+  });
+};
+
+var projects = {
+  "projects": [
+    {
+      "title": "Lorem Impsum",
+      "dates": "2014",
+      "description": "An interective web book with infinite text placeholder compiled of random public text selections",
+      "images": [
+        "images/197x148.gif",
+        "images/197x148.gif"
+      ]
+    },
+    {
+      "title": "Food Portfolio",
+      "dates": "2012-present",
+      "description": "Specialized portfolio site for cooks to showcase their masterpieces",
+      "images": [
+        "images/197x148.gif",
+        "images/197x148.gif"
+      ]
+
+    },
+    {
+      "title": "Dice web service",
+      "dates": "2011",
+      "description": "Web service to return random result of dice through",
+      "images": []
+    }
+  ],
+};
+projects.display = function() {
+  projects.projects.forEach(function (project) {
+    $("#projects").append(HTMLprojectStart);
+
+    $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", project.title));
+    $(".project-entry:last").append(HTMLprojectDates.replace("%data%", project.dates));
+    $(".project-entry:last").append(HTMLprojectDescription.replace("%data%", project.description));
+
+    for (var i = project.images.length - 1; i >= 0; i--) {
+      $(".project-entry:last").append(HTMLprojectImage.replace("%data%", project.images[i]));
+    }
+  });
+};
+
+// build Header section
+bio.display();
+
+// build Work Experience section
+work.display();
+
+// build Projects section
+projects.display();
+
+// build Education section
 education.display();
 
 // build Map section
 $("#mapDiv").append(googleMap);
-
-// build Footer section
-$("#footerContacts").append(formattedMobile);
-$("#footerContacts").append(formattedEmail);
-$("#footerContacts").append(formattedGithub);
-$("#footerContacts").append(formattedTwitter);
-$("#footerContacts").append(formattedLocation);
 
 $("#main").append(internationalizeButton);
 function inName (fullName) {
