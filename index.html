@@ -5,7 +5,17 @@
   <link href="css/style.css" rel="stylesheet">
   <script src="js/jQuery.js"></script>
   <script src="js/helper.js"></script>
+  <script>
+    // load resume data
+    var bio, education, work, projects;
 
+    $.getJSON('data/alex_fry.json', function (data) {
+      bio = data.bio;
+      education = data.education;
+      work = data.work;
+      projects = data.projects;
+    });
+  </script>
   <!--
   Uncomment the <script> tag below when you're ready to add an interactive
   Google Map to your resume!
